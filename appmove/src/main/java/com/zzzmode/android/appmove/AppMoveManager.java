@@ -21,15 +21,15 @@ import java.util.List;
 
 public class AppMoveManager {
 
-    public static final int PACKAGE_LOCATION_UNSPECIFIED = -1; //没有指定安装位置
+    public static final int PACKAGE_LOCATION_UNSPECIFIED = -1; //unspecified install location
 
-    public static final int STORE_APP_AUTO_LOCALTION = 0;     //自动
+    public static final int STORE_APP_AUTO_LOCALTION = 0;     //auto
     /**
-     * 内部存储
+     * Internal Store
      */
     public static final int STORE_APP_INTERNAL_LOCALTION = 1;
     /**
-     * 外部存储 sd卡
+     * External Store
      */
     public static final int STORE_APP_EXTERNAL_LOCALTION = 2;
 
@@ -38,7 +38,7 @@ public class AppMoveManager {
 
     private static final String TAG = "appmove";
 
-    public static final String JAR_NAME="appmove.jar";
+    public static final String JAR_NAME= "appmove.jar";
 
     private static boolean isExternalStorageEmulated = Environment.isExternalStorageEmulated();
 
@@ -116,10 +116,10 @@ public class AppMoveManager {
 
 
     /**
-     * 移动app
+     * move app
      *
-     * @param pkgName  包名
-     * @param location 指定的位置
+     * @param pkgName
+     * @param location want move to location
      */
     public void moveApp(final String pkgName, final int location) {
         if (mOnAppMoveCallback != null) {
@@ -146,7 +146,7 @@ public class AppMoveManager {
     }
 
     /**
-     * 移动到外部存储
+     * move to external store
      *
      * @param pkgName
      */
@@ -156,7 +156,7 @@ public class AppMoveManager {
 
 
     /**
-     * 移动到内部存储
+     * move to internal store
      *
      * @param pkgName
      */
@@ -176,7 +176,7 @@ public class AppMoveManager {
     }
 
     private void perResources() {
-        copyAssetsFile("appmove.jar", workPath + JAR_NAME);
+        copyAssetsFile("amove.jar", workPath + JAR_NAME);
         copyAssetsFile("moveshell", workPath + "moveshell");
     }
 
@@ -228,7 +228,7 @@ public class AppMoveManager {
 
 
     /**
-     * 设备是否支持应用移动
+     * check the device support move app
      *
      * @return
      */
@@ -236,23 +236,12 @@ public class AppMoveManager {
         return isExternalStorageEmulated;
     }
 
-    /**
-     * 检测应用是否可以移动
-     *
-     * @param pkgName
-     * @return
-     */
+
     public boolean appCanBeMove(String pkgName) {
         return checkMove(pkgName, STORE_APP_AUTO_LOCALTION);
     }
 
-    /**
-     * 检测是否可以移动到指定位置
-     *
-     * @param pkgName
-     * @param location 指定的位置
-     * @return
-     */
+
     public boolean checkMove(String pkgName, int location) {
         PackageInfo packageInfo = getPackageInfo(pkgName, 0);
         if (packageInfo != null) {
@@ -315,12 +304,7 @@ public class AppMoveManager {
     }
 
 
-    /**
-     * 检测是否可以移动到sd卡
-     *
-     * @param pkgName
-     * @return
-     */
+
     public boolean checkMove2SD(String pkgName) {
         return checkMove(pkgName, STORE_APP_EXTERNAL_LOCALTION);
     }
@@ -330,12 +314,7 @@ public class AppMoveManager {
     }
 
 
-    /**
-     * 检测是否可以移动到内部存储
-     *
-     * @param pkgName
-     * @return
-     */
+
     public boolean checkMove2Internal(String pkgName) {
         return checkMove(pkgName, STORE_APP_INTERNAL_LOCALTION);
     }
@@ -354,9 +333,9 @@ public class AppMoveManager {
     }
 
     /**
-     * 获取当前包的安装位置
+     * get current package install location
      *
-     * @param pkgName 包名
+     * @param pkgName
      * @return flags
      * {@link #PACKAGE_LOCATION_UNSPECIFIED}
      * {@link #STORE_APP_INTERNAL_LOCALTION},

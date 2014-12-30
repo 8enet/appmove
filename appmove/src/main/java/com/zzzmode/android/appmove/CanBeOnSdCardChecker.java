@@ -49,7 +49,7 @@ public class CanBeOnSdCardChecker {
     }
 
     private Field installLocationField = null;
-    private int externalValue; //系统外部存储值
+    private int externalValue; //system external value
 
     public int getCurrInstallLocation(ApplicationInfo info) {
         try {
