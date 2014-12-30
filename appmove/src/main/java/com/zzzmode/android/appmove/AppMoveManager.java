@@ -233,7 +233,7 @@ public class AppMoveManager {
      * @return
      */
     public boolean deviceCanBeMove() {
-        return isExternalStorageEmulated;
+        return !isExternalStorageEmulated;
     }
 
 
@@ -349,6 +349,18 @@ public class AppMoveManager {
         return PACKAGE_LOCATION_UNSPECIFIED;
     }
 
+    public static String getDescription(int flag){
+        switch (flag){
+            case STORE_APP_AUTO_LOCALTION:
+                return "Auto";
+            case STORE_APP_EXTERNAL_LOCALTION:
+                return "External Store";
+            case STORE_APP_INTERNAL_LOCALTION:
+                return "Internal Store";
+                        
+        }
+        return "";
+    }
 
     public static interface AppMoveCallback {
         void onMoveStart(String pkgName, int flag);

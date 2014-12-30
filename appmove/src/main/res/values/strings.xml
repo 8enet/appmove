@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">My Application3</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">App Move</string>
+    <string name="unsupport">you devices unsupport move app!</string>
+    <string name="wait">please wait...</string>
+    <string name="move_info">move %1$s to %2$s</string>
 
 </resources>
