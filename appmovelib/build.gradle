@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            resources.srcDirs = ['src/main/resources']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+def creatJar(){
+    def MyJarName="appmove.jar"   //the build success jar name
+    def pkgPath="com/zzzmode/android/util/move/"  //if you change the package name,please update
+    exec{
+    workingDir 'build/intermediates/classes/release' //in android studio ,i don't know how to config on eclipse
+    commandLine 'jar','cvf',project.buildDir.absolutePath+File.separator+MyJarName,pkgPath+'PackageMove.class',pkgPath+'PackageMove$PackageMoveObserver.class'
+
+    }
+}
+
+build.doLast {
+    creatJar()
+}
